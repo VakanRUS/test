@@ -1,6 +1,7 @@
 package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.Basket;
+import org.skypro.skyshop.product.Product;
 
 public class App {
     public static void main(String[] args) {
@@ -21,15 +22,15 @@ public class App {
         System.out.println();
 
         System.out.println("4. Получение стоимости корзины с несколькими товарами.");
-        System.out.println(Basket.countTotalPrice());
+        System.out.println("Итого: " + Basket.countTotalPrice());
         System.out.println();
 
         System.out.println("5. Поиск товара, который есть в корзине.");
-        System.out.println(Basket.checkExistence("Хлеб"));
+        Basket.checkExistence("Хлеб");
         System.out.println();
 
         System.out.println("6. Поиск товара, которого нет в корзине.");
-        System.out.println(Basket.checkExistence("Test"));
+        Basket.checkExistence("Test");
         System.out.println();
 
         System.out.println("7. Очистка корзины.");
@@ -41,11 +42,11 @@ public class App {
         System.out.println();
 
         System.out.println("9. Получение стоимости пустой корзины.");
-        System.out.println(Basket.countTotalPrice());
+        System.out.println("Итого: " + Basket.countTotalPrice());
         System.out.println();
 
         System.out.println("10. Поиск товара по имени в пустой корзине.");
-        System.out.println(Basket.checkExistence("Хлеб"));
+        Basket.checkExistence("Хлеб");
         System.out.println();
     }
 }
