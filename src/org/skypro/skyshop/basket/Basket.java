@@ -50,6 +50,7 @@ public class Basket {
 
     // Распечатка содержимого корзины
     public static void printBasket() {
+        int numberOfSpecialProducts = 0;
         if (Product.getCheckIsBasketFull() != 0) {
             System.out.println("Содержимое корзины:");
         }
@@ -57,11 +58,15 @@ public class Basket {
             if (productBasket[i] != null) {
                 System.out.println(productBasket[i].toString());
             }
+            if (productBasket[i] != null && productBasket[i].isSpecial()){
+                numberOfSpecialProducts++;
+            }
         }
         if (Product.getCheckIsBasketFull() == 0) {
             System.out.println("Корзина пуста");
         } else {
             System.out.println("Итого: " + Basket.countTotalPrice());
+            System.out.println("Специальных товаров: " + numberOfSpecialProducts);
         }
     }
 
