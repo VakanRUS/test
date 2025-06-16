@@ -1,11 +1,11 @@
 package org.skypro.skyshop.product;
 
 public class SimpleProduct extends Product {
-    static int simplePrice = 0;
+    private int simplePrice;
 
-    public SimpleProduct(String productName, int productPrice) {
-        super(productName, productPrice);
-        SimpleProduct.simplePrice = productPrice;
+    public SimpleProduct(String name, int price) {
+        super(name);
+        simplePrice = price;
     }
 
     @Override
@@ -15,8 +15,7 @@ public class SimpleProduct extends Product {
 
     @Override
     public boolean isSpecial() {
-        boolean isSpecial = false;
-        return isSpecial;
+        return false;
     }
 
     @Override
