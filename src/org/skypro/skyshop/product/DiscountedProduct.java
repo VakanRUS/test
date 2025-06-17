@@ -20,12 +20,8 @@ public class DiscountedProduct extends Product {
         return productPrice - ((productPrice * discountPercent) / 100);
     }
 
-    public int getDiscountPercent() {
-        return discountPercent;
-    }
-
     @Override
     public String toString() {
-        return getProductName() + ": " + getPrice() + " (скидка -" + discountPercent + "%)";
+        return getName() + ": " + getPrice() + " (скидка -" + discountPercent + "%)";
     }
 }

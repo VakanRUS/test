@@ -20,6 +20,6 @@ public class SimpleProduct extends Product {
 
     @Override
     public String toString() {
-        return getProductName() + ": " + simplePrice;
+        return getName() + ": " + simplePrice;
     }
 }

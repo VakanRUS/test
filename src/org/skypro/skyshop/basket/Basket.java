@@ -7,10 +7,10 @@ public class Basket {
 
     // Добавление товара в корзину
     public void addProduct(Product product) {
-        for (int i = 0; i < productBasket.length; i++) {
+        for (byte i = 0; i < productBasket.length; i++) {
             if (productBasket[i] == null) {
                 productBasket[i] = product;
-                System.out.println("Добавлен продукт: " + product.getProductName());
+                System.out.println("Добавлен продукт: " + product.getName());
                 return;
             }
         }
@@ -20,7 +20,7 @@ public class Basket {
     // Распечатка содержимого корзины
     public void printBasket() {
         int numberOfSpecialProducts = 0;
-        if (checkIsBasketFull() != 0) {
+        if (checkIsBasketEmpty() == false) {
             System.out.println("Содержимое корзины:");
         }
         for (byte i = 0; i < productBasket.length; i++) {
@@ -31,7 +31,7 @@ public class Basket {
                 numberOfSpecialProducts++;
             }
         }
-        if (checkIsBasketFull() == 0) {
+        if (checkIsBasketEmpty()) {
             System.out.println("Корзина пуста");
         } else {
             System.out.println("Итого: " + countTotalPrice());
@@ -54,7 +54,7 @@ public class Basket {
     public boolean findExistence(String name) {
         boolean check = false;
         for (byte i = 0; i < productBasket.length; i++) {
-            if (productBasket[i] != null && productBasket[i].getProductName().equals(name)) {
+            if (productBasket[i] != null && productBasket[i].getName().equals(name)) {
                 check = true;
                 System.out.println("Поиск: " + name + " - товар уже добавлен в корзину");
                 return check;
@@ -64,19 +64,19 @@ public class Basket {
         return check;
     }
 
-    public int checkIsBasketFull() {
-        int check = 0;
-        for (int i = 0; i < productBasket.length; i++) {
-            Product product = productBasket[i];
-            if (product != null) {
-                check++;
+    // проверка заполненности корзины
+    public boolean checkIsBasketEmpty() {
+        boolean check = true;
+        for (byte i = 0; i < productBasket.length; i++) {
+            if (productBasket[i] != null) {
+                check = false;
+                break;
             }
         }
         return check;
     }
 
-
-    // Очистка корзины
+        // Очистка корзины
     public void cleanBasket() {
         for (byte i = 0; i < productBasket.length; i++) {
             productBasket[i] = null;
