@@ -22,14 +22,13 @@ public class SearchEngine {
         Searchable[] found = new Searchable[5];
         int i = 0;
         for (Searchable searched : search) {
-            if (searched.getSearchTerm().toLowerCase().contains(searchTerm.toLowerCase()) && i < 5) {
-                found[i++] = searched;
-            }
-            if (i==5) {
+            if (i==5 || search == null) {
                 break;
+            }
+            else if (searched.getSearchTerm().toLowerCase().contains(searchTerm.toLowerCase())) {
+                found[i++] = searched;
             }
         }
         return found;
     }
-
 }
