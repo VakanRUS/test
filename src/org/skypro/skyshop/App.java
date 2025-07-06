@@ -21,7 +21,7 @@ public class App {
         SearchEngine search = new SearchEngine();
 
         SimpleProduct product1 = new SimpleProduct("Вишня", 100);
-        FixPriceProduct product2 = new FixPriceProduct("Яблоки");
+        FixPriceProduct product2 = null; // ради проверки работы кода добавил пустой продукт в корзину
         DiscountedProduct product3 = new DiscountedProduct("Картошка", 60, 15);
         FixPriceProduct product4 = new FixPriceProduct("Молоко");
         DiscountedProduct product5 = new DiscountedProduct("Хлеб \"Бородинский\"", 40, 15);
@@ -53,8 +53,8 @@ public class App {
 
         System.out.println("\n***\n");
 
-        basket.deleteItem("хлеб");
-        basket.deleteItem("хлеб");
+        System.out.println(basket.deleteItem("хлеб"));
+        System.out.println(basket.deleteItem("хлеб"));
 
         basket.printBasket();
 

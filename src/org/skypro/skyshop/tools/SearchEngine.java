@@ -26,11 +26,7 @@ public class SearchEngine {
             searchItem = iterator.next();
             if (searchItem.getSearchTerm().toLowerCase().contains(searchTerm.toLowerCase())) {
                 founded.add(searchItem);
-                iterator.remove();
             }
-        }
-        if (founded.isEmpty()) {
-            System.out.println("Продукт не найден\n" + founded + "\n");
         }
         return founded;
     }

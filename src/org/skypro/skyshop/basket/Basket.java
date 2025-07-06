@@ -13,8 +13,14 @@ public class Basket {
 
     // Добавление товара в корзину
     public void addProduct(Product product) {
-        productBasket.add(product);
-        System.out.println("Добавлен продукт: " + product.getName());
+        if (product != null) {
+            productBasket.add(product);
+            System.out.println("Добавлен продукт: " + product.getName());
+        } else {
+            productBasket.add(product);
+            System.out.println("Добавлен пустой продукт");
+//            System.out.println("Нельзя добавить пустой продукт");
+        }
     }
 
     // Распечатка содержимого корзины
@@ -23,11 +29,11 @@ public class Basket {
         if (!productBasket.isEmpty()) {
             System.out.println("Содержимое корзины:");
         }
-        for (Product products : productBasket) {
-            if (products != null) {
-                System.out.println(products);
+        for (Product product : productBasket) {
+            if (product != null) {
+                System.out.println(product);
             }
-            if (products != null && products.isSpecial()) {
+            if (product != null && product.isSpecial()) {
                 numberOfSpecialProducts++;
             }
         }
@@ -42,8 +48,10 @@ public class Basket {
     // Расчет полной стоимости корзины
     public int countTotalPrice() {
         int totalPrice = 0;
-        for (Product products : productBasket) {
-            totalPrice += products.getPrice();
+        for (Product product : productBasket) {
+            if (product != null) {
+                totalPrice += product.getPrice();
+            }
         }
         return totalPrice;
     }
@@ -51,8 +59,8 @@ public class Basket {
     // Проверка наличия
     public boolean findExistence(String name) {
         boolean check = false;
-        for (Product products : productBasket) {
-            if (products.getName().equals(name)) {
+        for (Product product : productBasket) {
+            if (product != null && product.getName().equals(name)) {
                 check = true;
                 System.out.println("Поиск: " + name + " - товар уже добавлен в корзину");
                 return check;
@@ -69,22 +77,17 @@ public class Basket {
     }
 
     // Удаление позиции по получаемому имени продукта
-    public void deleteItem(String searchTerm) {
-        System.out.println("Поиск и удаление из корзины продукта \"" + searchTerm + "\"");
+    public List<Searchable> deleteItem(String searchTerm) {
         List<Searchable> founded = new LinkedList<>();
         Iterator<Product> iterator = productBasket.iterator();
         Searchable search;
         while (iterator.hasNext()) {
             search = iterator.next();
-            if (search.getSearchTerm().toLowerCase().contains(searchTerm.toLowerCase())) {
+            if (search != null && search.getSearchTerm().toLowerCase().contains(searchTerm.toLowerCase())) {
                 founded.add(search);
                 iterator.remove();
             }
         }
-        if (founded.isEmpty()) {
-            System.out.println("Продукт не найден\n" + founded + "\n");
-        } else {
-            System.out.println("Продукт найден и удалён. Список удалённых продуктов:\n" + founded + "\n");
-        }
+        return founded;
     }
 }
