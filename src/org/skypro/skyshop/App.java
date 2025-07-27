@@ -10,18 +10,14 @@ import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.tools.SearchEngine;
 import org.skypro.skyshop.tools.Searchable;
 
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-import java.util.List;
-
 public class App {
+    public static SearchEngine search = new SearchEngine();
+    public static Basket basket = new Basket();
+
     public static void main(String[] args) throws BestResultNotFound {
 
-        Basket basket = new Basket();
-        SearchEngine search = new SearchEngine();
 
         SimpleProduct product1 = new SimpleProduct("Вишня", 100);
-//        FixPriceProduct product2 = null; // ради проверки работы кода добавил пустой продукт в корзину
         DiscountedProduct product3 = new DiscountedProduct("Картошка", 60, 15);
         FixPriceProduct product4 = new FixPriceProduct("Молоко");
         DiscountedProduct product5 = new DiscountedProduct("Хлеб \"Бородинский\"", 40, 15);
@@ -38,9 +34,13 @@ public class App {
         basket.addProduct(product7);
         basket.addProduct(product8);
 
-        search.addSearchable(product8);
-        search.addSearchable(product7);
+        search.addSearchable(product1);
+        search.addSearchable(product3);
+        search.addSearchable(product4);
         search.addSearchable(product5);
+        search.addSearchable(product6);
+        search.addSearchable(product7);
+        search.addSearchable(product8);
 
         System.out.println("\n***\n");
 
@@ -60,5 +60,11 @@ public class App {
 
         System.out.println(search.search("Хлеб"));
         System.out.println(search.search("Test"));
+
+        System.out.println("\n***\n");
+
+        System.out.println(search.search("Test"));
+        System.out.println(search.search("Хлеб"));
+        System.out.println(search.search(null));
     }
 }

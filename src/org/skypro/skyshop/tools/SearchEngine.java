@@ -7,24 +7,25 @@ import java.util.*;
 
 public class SearchEngine {
 
-    private List<Searchable> search;
+    private Set<Searchable> search;
 
     public SearchEngine() {
-        search = new LinkedList<>();
+        search = new HashSet<>();
     }
 
     public void addSearchable(Searchable searchTerm) {
         search.add(searchTerm);
     }
 
-    public Map<String, Searchable> search(String searchTerm) {
-        Map<String, Searchable> foundElements = new TreeMap<>();
-        Iterator<Searchable> iterator = search.iterator();
-        Searchable searchItem;
-        while (iterator.hasNext()) {
-            searchItem = iterator.next();
-            if (searchItem.getSearchTerm().toLowerCase().contains(searchTerm.toLowerCase())) {
-                foundElements.put(searchItem.getSearchTerm(), searchItem);
+    public Set<Searchable> search(String searchTerm) {
+        Set<Searchable> foundElements = new TreeSet<>(new Comparator());
+        if (searchTerm == null) {
+            System.out.println("Отправлен пустой запрос, поиск невозможен");
+        } else {
+            for (Searchable searchableElement : search) {
+                if (searchableElement != null && searchableElement.getSearchTerm().toLowerCase().contains(searchTerm.toLowerCase())) {
+                    foundElements.add(searchableElement);
+                }
             }
         }
         return foundElements;
@@ -60,5 +61,12 @@ public class SearchEngine {
         } else {
             return bestResult;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "SearchEngine{" +
+                "searchableElements=" + search +
+                '}';
     }
 }
